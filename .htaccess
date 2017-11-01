@@ -15,7 +15,7 @@
     	IndexHeadInsert "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"
 
 	# HIDE PRETTY INDEX DIRECTORY
-	IndexIgnore .htaccess /share/PrettyIndex
+	IndexIgnore .htaccess /share/PrettyIndexTheme
 
 #
 # THEME FILES
