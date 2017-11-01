@@ -1,0 +1,156 @@
+/*------------------------------------*\
+    Apaxy
+    by @adamwhitcroft
+
+    Theme name: Apaxy
+    Theme author: @adamwhitcroft
+\*------------------------------------*/
+@import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+@import url('//fonts.googleapis.com/css?family=Open+Sans');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+/* Have to use @import for the font, as you can only specify a single stylesheet */
+body {
+  font-family: "Open Sans", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: 400;
+}
+
+p, span, a, ul, li, button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+strong {
+  font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5em;
+  font-weight: 300;
+}
+
+strong {
+  font-weight: 400;
+}
+
+.tile {
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.tile .title {
+  margin-top: 0px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.tile .desc {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:100%;
+    display:block;
+  /*width: 150px;*/
+}
+
+.tile .datesize {
+  font-size: 10px;
+  opacity: 0.75;
+	/*width: 100%;*/
+	/*
+  margin-top: 0px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  */
+}
+
+.tile {
+  transition:all 0.2s ease;
+}
+
+.tile:hover {
+  -webkit-transform: scale(1.125);
+  -ms-transform: scale(1.125);
+  transform: scale(1.125);
+  z-index: 2;
+}
+
+.tile.red, .tile.orange, .tile.yellow, .tile.green, .tile.blue, .tile.indigo, .tile.purple {
+  color: #fff;
+}
+.tile.red {
+  background: #AC193D;
+}
+.tile.red:hover {
+  background: #7f132d;
+}
+.tile.orange {
+  background: #DC572E;
+}
+.tile.orange:hover {
+  background: #b8431f;
+}
+.tile.yellow {
+  background: #e3a21a;
+}
+.tile.yellow:hover {
+  background: #b58115;
+}
+.tile.green {
+  background: #00A600;
+}
+.tile.green:hover {
+  background: #007300;
+}
+.tile.blue {
+  background: #2672EC;
+}
+.tile.blue:hover {
+  background: #125acd;
+}
+.tile.indigo {
+  background: #172588;
+} 
+.tile.indigo:hover {
+  background: #131d66;
+}
+.tile.purple {
+  background: #5133AB;
+}
+.tile.purple:hover {
+  background: #3e2784;
+}
+
+@media (max-width: 767px) {
+	.navbar-header {
+		width:100%;
+	}
+	.navbar-brand {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		width:70%;
+	}
+}
+
+@media (min-width: 768px) {
+	.navbar-header {
+		width:48%;
+	}
+	.navbar-brand {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		width:100%;
+	}
+}

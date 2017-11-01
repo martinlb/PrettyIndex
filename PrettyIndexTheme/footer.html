@@ -1,0 +1,316 @@
+	<!--<div class="block">
+	</div>--/.postlisting-->
+
+<!--/.wrapper-->
+
+<!--<div class="footer">
+</div>--/.footer-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+/*
+// grab the 2nd child and add the parent class. tr:nth-child(2)
+document.getElementsByTagName('tr')[1].className = 'parent';
+// fix links when not adding a / at the end of the URI
+var uri = window.location.pathname.substr(1);
+if (uri.substring(uri.length-1) != '/'){
+	var indexes = document.getElementsByClassName('indexcolname'),
+	i = indexes.length;
+	while (i--){
+	    var a = indexes[i].getElementsByTagName('a')[0];
+	    a.href = '/' + uri + '/' + a.getAttribute('href',2);
+	}
+}
+*/
+</script>
+
+<script type="text/javascript">
+// Global variables
+var appname = "PrettyIndex of";
+var colors = shuffle(["red", "orange", "yellow", "green", "blue","indigo","purple"]);
+var bucket = colors.slice();
+
+// Shuffle array
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+// Random color
+function getRandomColor() {
+	if (bucket.length < 1) {
+		bucket = colors.slice();
+	}
+	
+	//var randomIndex = Math.floor(Math.random()*bucket.length);
+	var randomIndex = 0;
+
+	return bucket.splice(randomIndex, 1)[0];
+}
+
+// Convert date from "dd-mmm-yyyy hh:mm" to "dd/mm/yyyy hh:mm"
+function ConvertDate(str) {
+	try {
+		var arr = str.split("-");
+		var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+		var month = months.indexOf(arr[1].toLowerCase());
+		var date = new Date(parseInt(arr[2]), month, parseInt(arr[0])).toLocaleString();
+		var pos = date.indexOf(" ");
+		date = date.substring(0, pos);
+	}
+	catch (e) {
+		var date = "&nbsp";
+	}
+	return date;
+}
+
+// Return Font Awesome icon name from extension
+function GetIcon(ext) {
+	var icon = "";
+	switch (ext) {
+	case "DIR":
+		icon = "fa-folder-open";
+		break;
+	case "zip":
+	case "7z":
+	case "bz2":
+	case "cab":
+	case "gz":
+	case "tar":
+		icon = "fa-file-archive-o";
+		break;
+	case "aac":
+	case "aif":
+	case "aifc":
+	case "aiff":
+	case "ape":
+	case "au":
+	case "flac":
+	case "iff":
+	case "m4a":
+	case "mid":
+	case "mp3":
+	case "mpa":
+	case "ra":
+	case "wav":
+	case "wma":
+	case "f4a":
+	case "f4b":
+	case "oga":
+	case "ogg":
+	case "xm":
+	case "it":
+	case "s3m":
+	case "mod":
+		icon = "fa-file-audio-o";
+		break;
+	case "php":
+	case "htm":
+	case "html":
+	case "css":
+	case "js":
+	case "java":
+	case "jar":
+		icon = "fa-file-code-o";
+		break;
+	case "xls":
+	case "xlsx":
+	case "csv":
+	case "tsv":
+	case "xlsm":
+	case "xltx":
+	case "xltm":
+	case "xlam":
+	case "xlr":
+		icon = "fa-file-excel-o";
+		break;
+	case "gif":
+	case "png":
+	case "bmp":
+	case "jpg":
+	case "jpeg":
+	case "ico":
+	case "jpe":
+	case "psd":
+	case "xcf":
+		icon = "fa-file-image-o";
+		break;
+	case "pdf":
+	case "tif":
+	case "tiff":
+		icon = "fa-file-pdf-o";
+		break;
+	case "ppt":
+	case "pptx":
+	case "pptm":
+	case "ppsx":
+	case "pps":
+	case "ppsm":
+	case "potx":
+	case "pot":
+	case "potm":
+	case "odp":
+		icon = "fa-file-powerpoint-o";
+		break;
+	case "txt":
+		icon = "fa-file-text";
+		break;
+	case "asf":
+	case "asx":
+	case "avi":
+	case "flv":
+	case "mkv":
+	case "mov":
+	case "mp4":
+	case "mpg":
+	case "rm":
+	case "srt":
+	case "swf":
+	case "vob":
+	case "wmv":
+	case "m4v":
+	case "f4v":
+	case "f4p":
+	case "ogv":
+		icon = "fa-file-video-o";
+		break;
+	case "doc":
+	case "docx":
+		icon = "fa-file-word-o";
+		break;
+	default:
+		icon = "fa-file";
+	}
+	return icon;
+}
+
+$(document).ready(function() {
+	document.getElementsByTagName('title')[0].prepend("Pretty");
+	// Print the title
+	var title = document.getElementsByTagName('title')[0].innerHTML;
+	//var n = title.lastIndexOf('/');
+	//title = title.substring(title.lastIndexOf('/') + 1);
+	/*if (title.length > 30) {
+		title = title.substring(0,25) + "...";
+	}*/
+	//title += "/";
+	document.getElementById("title").innerHTML = title;
+	//document.getElementsByTagName('title')[0].prepend("Pretty");
+	
+	// Replace table with tile
+	$('table').replaceWith(function () {
+		var html = "";
+		var ext = "";
+		var ahref = "";
+		var date = "";
+		var name = "";
+		var size = "";
+		var desc = "";
+		var hint = "";
+		var icon = "";
+		// Navbar
+		$("tr:has(th)", this).each(function () {
+			// Update links
+			$("#sortName").attr("href", $(this).children('th').eq(0).children('a').attr("href"));
+			$("#sortDate").attr("href", $(this).children('th').eq(1).children('a').attr("href"));
+			$("#sortSize").attr("href", $(this).children('th').eq(2).children('a').attr("href"));
+			$("#sortDesc").attr("href", $(this).children('th').eq(3).children('a').attr("href"));
+			
+			
+			// Add sort icons to active sort
+			var urlparam = new (function (sRecherche) {
+				if (sRecherche.length > 1) {
+					for (var aItKey, nKeyId = 0, aCouples = sRecherche.substr(1).split(";"); nKeyId < aCouples.length; nKeyId++) {
+						aItKey = aCouples[nKeyId].split("=");
+						this[unescape(aItKey[0])] = aItKey.length > 1 ? unescape(aItKey[1]) : "";
+					}
+				}
+			})(window.location.search);
+			switch (urlparam.C) {
+				case "M":
+					$("#sortDate").parent("li").addClass("active");
+					if (urlparam.O == 'A') {
+						$("#sortDate").prepend("<span class='glyphicon glyphicon-chevron-down'></span>&nbsp;");
+					} else {
+						$("#sortDate").prepend("<span class='glyphicon glyphicon-chevron-up'></span>&nbsp;");
+					}
+					break;
+				case "S":
+					$("#sortSize").parent("li").addClass("active");
+					if (urlparam.O == 'A') {
+						$("#sortSize").prepend("<span class='glyphicon glyphicon-chevron-down'></span>&nbsp;");
+					} else {
+						$("#sortSize").prepend("<span class='glyphicon glyphicon-chevron-up'></span>&nbsp;");
+					}
+					break;
+				case "D":
+					$("#sortDesc").parent("li").addClass("active");
+					if (urlparam.O == 'A') {
+						$("#sortDesc").prepend("<span class='glyphicon glyphicon-chevron-down'></span>&nbsp;");
+					} else {
+						$("#sortDesc").prepend("<span class='glyphicon glyphicon-chevron-up'></span>&nbsp;");
+					}
+					break;
+				default:
+					$("#sortName").parent("li").addClass("active");
+					if (urlparam.O == 'A') {
+						$("#sortName").prepend("<span class='glyphicon glyphicon-chevron-down'></span>&nbsp;");
+					} else {
+						$("#sortName").prepend("<span class='glyphicon glyphicon-chevron-up'></span>&nbsp;");
+					}
+			}
+		});
+		
+		// Tiles
+		$("tr:has(td)", this).each(function () {
+			ahref = $(this).children('td').eq(0).children('a').attr("href");
+			date = ConvertDate($(this).children('td').eq(1).html());
+			name = $(this).children('td').eq(0).children('a').html();
+			size = $(this).children('td').eq(2).html().replace(/\s+$/, '');
+			desc = $(this).children('td').eq(3).html();
+			hint = name;
+			if (desc !== "&nbsp;") {
+				hint += " - " + desc.replace('\'', '&#39;');
+			}
+			if (name.indexOf('.') !== -1) {
+				ext = /(?:\.([^.]+))?$/.exec(name)[1].toLowerCase();
+			} else {
+				 if ((name.substr(name.length-1) == "/") || (name == "Parent Directory")) {
+					ext = "DIR";
+				 } else {
+					ext = "rien";
+				 }
+			}
+			
+			html += "<div class='col-sm-3'><a href='"+ahref+"' title='"+hint+"'><div class='tile "+getRandomColor()+"'>";
+			html += "<h3 class='title'><i class='fa "+GetIcon(ext)+"'></i>&nbsp;"+name+"</h3>";
+			html += "<span class='desc pull-left'>"+desc+"</span>";
+			html += "<span class='datesize pull-right'>";
+			if (size !== "  -") {
+				html += size+"o - ";
+			}
+			html += date+"</span>";
+
+			html += "</div></a></div>";
+		});
+		return "<div class='row'>" + html + "</div>";
+	});
+
+
+});
+</script>

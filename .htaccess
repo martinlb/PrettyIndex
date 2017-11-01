@@ -1,0 +1,34 @@
+#
+# PrettyIndex by Martin Le Blévennec
+#
+# For a full breakdown of the mod_autoindex module:
+# http://apache.org/docs/2.2/mod/mod_autoindex.html
+#
+
+	# ENABLE INDEXING
+	Options +Indexes
+
+	# INDEX OPTIONS
+	IndexOptions +Charset=UTF-8 -FancyIndexing +IgnoreCase +FoldersFirst +XHTML +HTMLTable +SuppressRules -SuppressDescription +NameWidth=* -IconsAreLinks +SuppressIcon +DescriptionWidth=*
+
+    	# META VIEWPORT
+    	IndexHeadInsert "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"
+
+	# HIDE PRETTY INDEX DIRECTORY
+	IndexIgnore .htaccess /share/PrettyIndex
+
+#
+# THEME FILES
+#
+
+	HeaderName /share/PrettyIndexTheme/header.html
+	ReadmeName /share/PrettyIndexTheme/footer.html
+	IndexStyleSheet /share/PrettyIndexTheme/style.css
+
+#
+# DESCRIPTIONS
+#
+	AddDescription "PHP Informations" phpinfo.php
+	AddDescription "Text file" *.txt
+	AddDescription "These are files without extension or Folders" *
+	AddDescription "These are files with extensions" *.?
