@@ -2,7 +2,7 @@
 
 PrettyIndex is a responsive, coloured kind of Metro theme built to enhance the experience of browsing web directories. It uses the `mod_autoindex` Apache module, some CSS to override the default style and—some JS & JQuery—to alter the generated table structure of a directory listing.
 
-![alt screenshot](https://github.com/martinlb/martinlb.github.io/blob/master/img/afterPrettyIndex.png)
+![https://github.com/martinlb/martinlb.github.io/blob/master/img/afterPrettyIndex.png](https://github.com/martinlb/martinlb.github.io/blob/master/img/afterPrettyIndex.png)
 
 ## Installation
 
