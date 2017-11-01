@@ -2,6 +2,8 @@
 
 PrettyIndex is a responsive, coloured kind of Metro theme built to enhance the experience of browsing web directories. It uses the `mod_autoindex` Apache module, some CSS to override the default style and—some JS & JQuery—to alter the generated table structure of a directory listing.
 
+![alt screenshot](https://github.com/martinlb/martinlb.github.io/blob/master/img/afterPrettyIndex.png)
+
 ## Installation
 
 PrettyIndex requires an Apache(2.2.11+) enabled HTTP server.
@@ -36,7 +38,7 @@ The PrettyIndex theme has icons in place for the following extensions:
     
 ## Troubleshooting
 
-Make sure the options set in `.htaccess` files of PrettyIndex can actually be changed. This means that you need to allow to ovveride the used options in your apache configuration of the directory apaxy used with: `AllowOverride Indexes`
+Make sure the options set in `.htaccess` files of PrettyIndex can actually be changed. This means that you need to allow to ovveride the used options in your apache configuration of the directory PrettyIndex used with: `AllowOverride Indexes`
 
 Find more information in the in the [apache documentation](https://httpd.apache.org/docs/2.2/de/mod/core.html).
 
@@ -46,6 +48,6 @@ PrettyIndex owes its existence to the amazing [apaxy](http://adamwhitcroft.com/a
 
 [Font Awesome](http://fontawesome.io/) are used as icons in PrettyIndex.
 
-[Bootstrap](http://fontawesome.io/) is used to make PrettyIndex responsive.
+[Bootstrap](http://getbootstrap.com/) is used to make PrettyIndex responsive.
 
-[JQuery](http://fontawesome.io/) is used to get total control of Apache autoindex listing.
+[JQuery](https://jquery.com/) is used to get total control of Apache autoindex listing.
