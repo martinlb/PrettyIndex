@@ -44,6 +44,8 @@ strong {
   background: #fff;
   padding: 20px;
   margin-bottom: 30px;
+  transition:all 0.2s ease;
+  opacity: 0.8;
 }
 
 .tile .title {
@@ -59,23 +61,11 @@ strong {
     text-overflow:ellipsis;
     width:100%;
     display:block;
-  /*width: 150px;*/
 }
 
 .tile .datesize {
   font-size: 10px;
   opacity: 0.75;
-	/*width: 100%;*/
-	/*
-  margin-top: 0px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  */
-}
-
-.tile {
-  transition:all 0.2s ease;
 }
 
 .tile:hover {
