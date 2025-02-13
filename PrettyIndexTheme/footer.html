@@ -65,18 +65,51 @@ function getRandomColor() {
 
 // Convert date from "dd-mmm-yyyy hh:mm" to "dd/mm/yyyy hh:mm"
 function ConvertDate(str) {
-	try {
-		var arr = str.split("-");
-		var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-		var month = months.indexOf(arr[1].toLowerCase());
-		var date = new Date(parseInt(arr[2]), month, parseInt(arr[0])).toLocaleString();
-		var pos = date.indexOf(" ");
-		date = date.substring(0, pos);
-	}
-	catch (e) {
-		var date = "&nbsp";
-	}
-	return date;
+  // Trim the input string to remove leading/trailing whitespace
+  str = str.trim();
+  
+  // If the date is already in the "dd/mm/yyyy hh:mm" format, return it as is
+  if (/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/.test(str)) {
+    return str;
+  }
+  
+  try {
+    // Check if the date is in the "yyyy-mm-dd hh:mm" format
+    if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(str)) {
+      var parts = str.split(" ");
+      var dateParts = parts[0].split("-");
+      var year = dateParts[0];
+      var month = dateParts[1];
+      var day = dateParts[2];
+      var timePart = parts[1];
+      return day + "/" + month + "/" + year + " " + timePart;
+    }
+    
+    // Assume the date is in the "dd-mmm-yyyy hh:mm" format
+    var parts = str.split(" ");
+    if (parts.length < 2) throw new Error("Invalid format");
+    var datePart = parts[0];
+    var timePart = parts[1];
+    
+    var dateComponents = datePart.split("-");
+    if (dateComponents.length < 3) throw new Error("Invalid format");
+    var day = dateComponents[0];
+    var monthStr = dateComponents[1].toLowerCase();
+    var year = dateComponents[2];
+    
+    var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+    var monthIndex = months.indexOf(monthStr);
+    if (monthIndex === -1) throw new Error("Invalid month");
+    var month = (monthIndex + 1).toString();
+    
+    // Format day and month to always have two digits
+    if (day.length < 2) day = "0" + day;
+    if (month.length < 2) month = "0" + month;
+    
+    return day + "/" + month + "/" + year + " " + timePart;
+  } catch (e) {
+    return e;
+  }
 }
 
 // Return Font Awesome icon name from extension
